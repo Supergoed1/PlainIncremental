@@ -9,4 +9,5 @@ function init() {
 
 function click() {
     game.money.plus(game.moneyPerClick);
+    console.log(game.money.toString())
 }
