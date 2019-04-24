@@ -1,7 +1,12 @@
 var game = {
-    money: 0,
+    money: new Decimal(0),
     moneyPerClick: 1
 };
-function click() {
 
+function init() {
+
+}
+
+function click() {
+    game.money.plus(game.moneyPerClick);
 }
