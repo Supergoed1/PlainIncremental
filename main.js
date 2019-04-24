@@ -1,13 +1,18 @@
 var game = {
-    money: new Decimal(0),
-    moneyPerClick: 1
+    money: new Decimal(1),
+    moneyPerClick: new Decimal(1)
 };
 
 function init() {
-
+    console.log("hi");
 }
 
-function click() {
-    game.money.plus(game.moneyPerClick);
-    console.log(game.money.toString())
+function test() {
+    game.money = game.money.plus(moneyPerClick);
+    console.log(game.money.toString());
 }
+
+
+
+
+init();
