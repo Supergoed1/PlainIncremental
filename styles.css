@@ -1,0 +1,28 @@
+.clicker {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+	background-color:#768d87;
+	border-radius:8px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:11px 23px;
+    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+}
+.clicker:hover {
+	background-color:#6c7c7c;
+}
+.clicks {
+    position: fixed;
+    top: 45%;
+    right: 50%;
+    color: rgb(105, 100, 77);
+    font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+}
