@@ -19,6 +19,7 @@ function init() {
 function updateGui() {
     document.getElementById("money").innerHTML = format(game.money);
     document.getElementById("presCoins").innerHTML = "Prestige Coins: " + game.prestigeCoins;
+    document.getElementById("presBonus").innerHTML = "Prestige Bonus: " + game.prestigeCoins * bonusPerPresCoin / 100;
     document.getElementById("clickButton").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerClick));
     document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/per click <br> Cost: " + format(game.clickUpgradeCost);
 }
