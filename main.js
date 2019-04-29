@@ -4,11 +4,13 @@ var game = {
     prestigeCoins: 0,
     bonusPerPresCoin: 1,
     clickUpgradeCost: 10,
-    clickAmountPerUpgrade: 1
+    clickAmountPerUpgrade: 1,
+    clickUpgradeAmountTillNextUpgrade: 0
 };
 
 var upgradeMenu = document.getElementById("upgradesMenu");
 var updateguiint = setInterval("updateGui()", 20);
+var upgradeint = setInterval("update()", 50);
 
 function init() {
     console.log("hi");
@@ -16,10 +18,35 @@ function init() {
 
 function updateGui() {
     document.getElementById("money").innerHTML = format(game.money);
+    document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/per click <br> Cost: " + format(game.clickUpgradeCost);
 }
+
+function update() {
+}
+
+function toggleVisibility(element) {
+    if(element.style.visibility == "hidden") {
+        element.style.visibility = "visible";
+    } else{
+        element.style.visibility = "hidden";
+    }
+}
+
 function onClick() {
-    upgradeMenu.style.display = "block";
-    game.money += game.moneyPerClick;
+    if(game.prestigeCoins <= 100) {
+        game.money = game.money + (game.moneyPerClick * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
+    } else {
+        game.money = game.money + (game.moneyPerClick * (game.prestigeCoins * game.bonusPerPresCoin / 100));
+    }
+}
+
+function prestige() {
+    game.prestigeCoins += Math.round(Math.round(game.money / 10));
+    game.money = 0;
+    game.moneyPerClick = 1;
+    game.clickAmountPerUpgrade = 1;
+    game.clickUpgradeAmountTillNextUpgrade = 0;
+    game.clickUpgradeCost = 10;
 }
 
 function format(num) {
@@ -31,7 +58,12 @@ function buyUpgrade(upgrade) {
         if(game.money >= game.clickUpgradeCost) {
             game.moneyPerClick += game.clickAmountPerUpgrade;
             game.money -= game.clickUpgradeCost;
-            game.clickUpgradeCost *= 2;
+            game.clickUpgradeAmountTillNextUpgrade += 1;
+            if(game.clickUpgradeAmountTillNextUpgrade >= 5) {
+                game.clickAmountPerUpgrade *= 2;
+                game.clickUpgradeAmountTillNextUpgrade = 0;
+            }
+            game.clickUpgradeCost *= 1.50;
         }
     }
 }

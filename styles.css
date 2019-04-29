@@ -31,33 +31,15 @@
     border-radius:5px;
 	border:1px solid #566963;
     display:inline-block;
-    background-color:#768d87;
+    background-color:#86d0f0;
     cursor:pointer;
-}
-
-.upgradesButton .upgradeToolTip {
-    visibility: visible;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.upgradesButton:hover .upgradeToolTip {
-    visibility: hidden;
+    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
 }
 
 #upgradesMenu {
     border-radius:5px;
 	border:1px solid #566963;
-    display:none;
-    background-color:#768d87;
-    width: 5%;
+    display:block;
+    background-color:#9fcce0;
+    width: 10%;
 }
