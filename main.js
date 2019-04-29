@@ -13,7 +13,22 @@ var updateguiint = setInterval("updateGui()", 20);
 var upgradeint = setInterval("update()", 50);
 
 function init() {
-    console.log("hi");
+    if(localStorage.getItem("game") == null) {
+        save();
+    }
+    load();
+    console.log("Initialized");
+}
+
+function save() {
+    localStorage.setItem("game", JSON.stringify(game));
+    console.log("Data saved");
+}
+
+function load() {
+    game = JSON.parse(localStorage.getItem("game"));
+    console.log("Data loaded");
+    
 }
 
 function updateGui() {
@@ -60,8 +75,8 @@ function prestige() {
     game.clickUpgradeCost = 10;
 }
 
-function format(num) {
-    return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+function format(number) {
+    return number.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
 function buyUpgrade(upgrade) {
@@ -78,5 +93,8 @@ function buyUpgrade(upgrade) {
         }
     }
 }
+window.onbeforeunload = function (){
+    save();
+};
 
 init();
