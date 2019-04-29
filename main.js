@@ -7,6 +7,7 @@ var game = {
     clickAmountPerUpgrade: 1
 };
 
+var upgradeMenu = document.getElementById("upgradesMenu");
 var updateguiint = setInterval("updateGui()", 20);
 
 function init() {
@@ -16,8 +17,8 @@ function init() {
 function updateGui() {
     document.getElementById("money").innerHTML = format(game.money);
 }
-
 function onClick() {
+    upgradeMenu.style.display = "block";
     game.money += game.moneyPerClick;
 }
 
