@@ -19,7 +19,7 @@ function init() {
 function updateGui() {
     document.getElementById("money").innerHTML = format(game.money);
     document.getElementById("presCoins").innerHTML = "Prestige Coins: " + game.prestigeCoins;
-    document.getElementById("presBonus").innerHTML = "Prestige Bonus: " + game.prestigeCoins * bonusPerPresCoin / 100;
+    document.getElementById("presBonus").innerHTML = "Prestige Bonus: " + game.prestigeCoins * game.bonusPerPresCoin + "%";
     document.getElementById("clickButton").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerClick));
     document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/per click <br> Cost: " + format(game.clickUpgradeCost);
 }
@@ -52,7 +52,7 @@ function onClick() {
 }
 
 function prestige() {
-    game.prestigeCoins += Math.round(Math.round(game.money / 10));
+    game.prestigeCoins += Math.round(Math.round(game.money / 50));
     game.money = 0;
     game.moneyPerClick = 1;
     game.clickAmountPerUpgrade = 1;
