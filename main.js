@@ -18,6 +18,8 @@ function init() {
 
 function updateGui() {
     document.getElementById("money").innerHTML = format(game.money);
+    document.getElementById("presCoins").innerHTML = "Prestige Coins: " + game.prestigeCoins;
+    document.getElementById("clickButton").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerClick));
     document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/per click <br> Cost: " + format(game.clickUpgradeCost);
 }
 
@@ -29,6 +31,14 @@ function toggleVisibility(element) {
         element.style.visibility = "visible";
     } else{
         element.style.visibility = "hidden";
+    }
+}
+
+function getPrestigeBonus(num) {
+    if(game.prestigeCoins <= 100) {
+        return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
+    } else {
+        return (num * (game.prestigeCoins * game.bonusPerPresCoin / 100));
     }
 }
 
