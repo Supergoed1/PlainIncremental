@@ -1,16 +1,23 @@
 var game = {
     money: 0,
     moneyPerClick: 1,
+    moneyPerSec: 0,
     prestigeCoins: 0,
     bonusPerPresCoin: 1,
     clickUpgradeCost: 10,
     clickAmountPerUpgrade: 1,
-    clickUpgradeAmountTillNextUpgrade: 0
+    clickUpgradeAmountTillNextUpgrade: 0,
+    perSecUpgradeCost: 25,
+    perSecAmountPerUpgrade: 1,
+    perSecUpgradeAmountTillNextUpgrade: 0
 };
 
 var upgradeMenu = document.getElementById("upgradesMenu");
 var updateguiint = setInterval("updateGui()", 20);
 var upgradeint = setInterval("update()", 50);
+var everySec = setInterval(() => {
+    game.money += getPrestigeBonus(game.moneyPerSec);
+}, 1000);
 
 function init() {
     if(localStorage.getItem("game") == null) {
@@ -36,7 +43,8 @@ function updateGui() {
     document.getElementById("presCoins").innerHTML = "Prestige Coins: " + game.prestigeCoins;
     document.getElementById("presBonus").innerHTML = "Prestige Bonus: " + game.prestigeCoins * game.bonusPerPresCoin + "%";
     document.getElementById("clickButton").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerClick));
-    document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/per click <br> Cost: " + format(game.clickUpgradeCost);
+    document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/click <br> Cost: " + format(game.clickUpgradeCost);
+    document.getElementById("perSecUpgrade").innerHTML = "+" + format(game.perSecAmountPerUpgrade) + "/sec <br> Cost: " + format(game.perSecUpgradeCost);
 }
 
 function update() {
@@ -51,28 +59,24 @@ function toggleVisibility(element) {
 }
 
 function getPrestigeBonus(num) {
-    if(game.prestigeCoins <= 100) {
-        return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
-    } else {
-        return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
-    }
+    return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
 }
 
 function onClick() {
-    if(game.prestigeCoins <= 100) {
-        game.money = game.money + (game.moneyPerClick * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
-    } else {
-        game.money = game.money + (game.moneyPerClick * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
-    }
+    game.money = game.money + getPrestigeBonus(game.moneyPerClick);
 }
 
 function prestige() {
     game.prestigeCoins += Math.round(Math.round(game.money / 50));
     game.money = 0;
     game.moneyPerClick = 1;
+    game.moneyPerSec = 0;
     game.clickAmountPerUpgrade = 1;
     game.clickUpgradeAmountTillNextUpgrade = 0;
     game.clickUpgradeCost = 10;
+    game.perSecAmountPerUpgrade = 1;
+    game.perSecUpgradeAmountTillNextUpgrade = 0;
+    game.perSecUpgradeCost = 25;
 }
 
 function format(number) {
@@ -90,6 +94,18 @@ function buyUpgrade(upgrade) {
                 game.clickUpgradeAmountTillNextUpgrade = 0;
             }
             game.clickUpgradeCost *= 1.50;
+        }
+    }
+    if(upgrade == "perSec") {   
+        if(game.money >= game.perSecUpgradeCost) {
+            game.moneyPerSec += game.perSecAmountPerUpgrade;
+            game.money -= game.perSecUpgradeCost;
+            game.perSecUpgradeAmountTillNextUpgrade += 1;
+            if(game.perSecUpgradeAmountTillNextUpgrade >= 5) {
+                game.perSecAmountPerUpgrade *= 2;
+                game.perSecUpgradeAmountTillNextUpgrade = 0;
+            }
+            game.perSecUpgradeCost *= 1.50;
         }
     }
 }
