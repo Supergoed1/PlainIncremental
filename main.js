@@ -54,7 +54,7 @@ function getPrestigeBonus(num) {
     if(game.prestigeCoins <= 100) {
         return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
     } else {
-        return (num * (game.prestigeCoins * game.bonusPerPresCoin / 100));
+        return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
     }
 }
 
@@ -62,7 +62,7 @@ function onClick() {
     if(game.prestigeCoins <= 100) {
         game.money = game.money + (game.moneyPerClick * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
     } else {
-        game.money = game.money + (game.moneyPerClick * (game.prestigeCoins * game.bonusPerPresCoin / 100));
+        game.money = game.money + (game.moneyPerClick * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
     }
 }
 
