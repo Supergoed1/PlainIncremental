@@ -16,9 +16,6 @@ var upgradeMenu = document.getElementById("upgradesMenu");
 var updateguiint = setInterval("updateGui()", 20);
 var upgradeint = setInterval("update()", 50);
 var everySec = setInterval(() => {
-    if(getPrestigeBonus(game.moneyPerSec) >= 0 && getPrestigeBonus(game.moneyPerSec) < 1) {
-        return;
-    }
     game.money += getPrestigeBonus(game.moneyPerSec);
 }, 1000);
 
@@ -62,11 +59,11 @@ function toggleVisibility(element) {
 }
 
 function getPrestigeBonus(num) {
-    return (num * 1 + (game.prestigeCoins * game.bonusPerPresCoin / 100));
+    return (num * (1 +  (game.prestigeCoins * game.bonusPerPresCoin / 100)));
 }
 
 function onClick() {
-    game.money = game.money + getPrestigeBonus(game.moneyPerClick);
+    game.money = game.money * 1 + getPrestigeBonus(game.moneyPerClick);
 }
 
 function prestige() {
