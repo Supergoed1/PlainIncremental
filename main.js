@@ -9,7 +9,8 @@ var game = {
     clickUpgradeAmountTillNextUpgrade: 0,
     perSecUpgradeCost: 25,
     perSecAmountPerUpgrade: 1,
-    perSecUpgradeAmountTillNextUpgrade: 0
+    perSecUpgradeAmountTillNextUpgrade: 0,
+    lastLoginDate: null
 };
 
 var upgradeMenu = document.getElementById("upgradesMenu");
@@ -24,6 +25,15 @@ function init() {
         save();
     }
     load();
+    var date1 = new Date(game.lastLoginDate);
+    var date2 = new Date(Date.now());
+    console.log(date1);
+    console.log(date2);
+    var secondBetweenTwoDate = Math.abs((date2.getTime() - date1.getTime()) / 1000);
+    console.log
+    console.log("Away for " + secondBetweenTwoDate + " seconds");
+    console.log("Earned: " + (game.moneyPerSec * secondBetweenTwoDate))
+    game.money += (game.moneyPerSec * secondBetweenTwoDate);
     console.log("Initialized");
 }
 
@@ -110,6 +120,7 @@ function buyUpgrade(upgrade) {
     }
 }
 window.onbeforeunload = function (){
+    game.lastLoginDate = new Date();
     save();
 };
 
