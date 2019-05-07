@@ -30,7 +30,7 @@ function init() {
     console.log(date1);
     console.log(date2);
     var secondBetweenTwoDate = Math.abs((date2.getTime() - date1.getTime()) / 1000);
-    console.log
+    secondBetweenTwoDate = Math.round(secondBetweenTwoDate);
     console.log("Away for " + secondBetweenTwoDate + " seconds");
     console.log("Earned: " + (game.moneyPerSec * secondBetweenTwoDate))
     game.money += (game.moneyPerSec * secondBetweenTwoDate);
