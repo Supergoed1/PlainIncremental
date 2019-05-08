@@ -13,6 +13,8 @@ var game = {
     maxOfflineTime: 0.5
 };
 
+var defaultGame = game;
+
 var upgradeMenu = document.getElementById("upgradesMenu");
 var updateguiint = setInterval("updateGui()", 20);
 var upgradeint = setInterval("update()", 50);
@@ -37,6 +39,10 @@ function init() {
     alert("Away for " + secondBetweenTwoDate + "/" + game.maxOfflineTime * 3600 + " seconds" + "   You Earned: " + (game.moneyPerSec * secondBetweenTwoDate));
     game.money += (game.moneyPerSec * secondBetweenTwoDate);
     console.log("Initialized");
+}
+
+function reset() {
+    game = defaultGame;
 }
 
 function save() {
