@@ -10,6 +10,7 @@ var game = {
     perSecUpgradeCost: 25,
     perSecAmountPerUpgrade: 1,
     perSecUpgradeAmountTillNextUpgrade: 0,
+    maxOfflineTime: 0.5
 };
 
 var upgradeMenu = document.getElementById("upgradesMenu");
@@ -30,7 +31,10 @@ function init() {
     console.log(date2);
     var secondBetweenTwoDate = Math.abs((date2.getTime() - date1.getTime()) / 1000);
     secondBetweenTwoDate = Math.round(secondBetweenTwoDate);
-    alert("Away for " + secondBetweenTwoDate + " seconds" + "   You Earned: " + (game.moneyPerSec * secondBetweenTwoDate));
+    if(secondBetweenTwoDate >= game.maxOfflineTime * 3600) {
+        secondBetweenTwoDate = game.maxOfflineTime * 3600
+    }
+    alert("Away for " + secondBetweenTwoDate + "/" + game.maxOfflineTime * 3600 + " seconds" + "   You Earned: " + (game.moneyPerSec * secondBetweenTwoDate));
     game.money += (game.moneyPerSec * secondBetweenTwoDate);
     console.log("Initialized");
 }
