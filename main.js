@@ -63,7 +63,6 @@ function updateGui() {
     document.getElementById("presBonus").innerHTML = "Prestige Bonus: " + game.prestigeCoins * game.bonusPerPresCoin + "%";
     document.getElementById("clickButton").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerClick));
     document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/click <br> Cost: " + format(game.clickUpgradeCost);
-    
     document.getElementById("offlineTimeUpgrade").innerHTML = "+0.5 hours offline time <br> Cost: " + game.offlineTimeCost;
 }
 
@@ -132,7 +131,7 @@ function buyUpgrade(upgrade) {
         if(game.money >= game.offlineTimeCost) {
             game.maxOfflineTime += 0.5;
             game.money -= game.offlineTimeCost;
-            game.perSecUpgradeCost *= 4;
+            game.offlineTimeCost *= 4;
         }
     }
 }
