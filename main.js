@@ -1,4 +1,5 @@
 var game = {
+    dataversion: 0.1,
     money: 0,
     moneyPerClick: 1,
     moneyPerSec: 0,
@@ -14,6 +15,8 @@ var game = {
     maxOfflineTime: 0.5
 };
 
+var dataversion = 0.1;
+
 var defaultGame = game;
 
 var upgradeMenu = document.getElementById("upgradesMenu");
@@ -28,6 +31,9 @@ function init() {
         save();
     }
     load();
+    if(game.dataversion == undefined || game.dataversion < dataversion) {
+        reset();
+    }
     var date1 = new Date(game.lastLoginDate);
     var date2 = new Date(Date.now());
     console.log(date1);
