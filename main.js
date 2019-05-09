@@ -11,7 +11,8 @@ var game = {
     perSecAmountPerUpgrade: 1,
     perSecUpgradeAmountTillNextUpgrade: 0,
     offlineTimeCost: 1000,
-    maxOfflineTime: 0.5
+    maxOfflineTime: 0.5,
+    prestigeBonusUpgradeCost: 500
 };
 
 var defaultGame = game;
@@ -54,7 +55,6 @@ function save() {
 function load() {
     game = JSON.parse(localStorage.getItem("game"));
     console.log("Data loaded");
-    
 }
 
 function updateGui() {
@@ -87,7 +87,10 @@ function onClick() {
 }
 
 function prestige() {
-    game.prestigeCoins += Math.round(Math.round(game.money / 50));
+    if(confirm("If you prestige now you will get " + Math.round(Math.round(game.money / 100)) + " prestige coins") == false) {
+        return;
+    }
+    game.prestigeCoins += Math.round(Math.round(game.money / 100));
     game.money = 0;
     game.moneyPerClick = 1;
     game.moneyPerSec = 0;
@@ -135,6 +138,14 @@ function buyUpgrade(upgrade) {
             game.offlineTimeCost *= 4;
         }
     }
+    if(upgrade == "prestigeBonus") {
+        if(game.prestigeCoins >= game.prestigeBonusUpgradeCost) {
+            game.bonusPerPresCoin += 1;
+            game.prestigeCoins -= game.prestigeBonusUpgradeCost;
+            game.prestigeBonusUpgradeCost = Math.round(game.prestigeBonusUpgradeCost * 3.50);
+        }
+    }
+    
 }
 window.onbeforeunload = function (){
     game.lastLoginDate = new Date();
