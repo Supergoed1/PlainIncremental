@@ -21,8 +21,8 @@ var upgradeMenu = document.getElementById("upgradesMenu");
 var updateguiint = setInterval("updateGui()", 20);
 var upgradeint = setInterval("update()", 50);
 var everySec = setInterval(() => {
-    game.money += getPrestigeBonus(game.moneyPerSec);
-}, 1000);
+    game.money += (getPrestigeBonus(game.moneyPerSec) / 100);
+}, 10);
 
 function init() {
     if(localStorage.getItem("game") == null) {
