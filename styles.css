@@ -44,6 +44,17 @@
     width: 10%;
 }
 
+#market {
+	position: fixed;
+	left: 88%;
+    border-radius:3px;
+	border:1px solid #462d04;
+    display:block;
+    background-color:#944708;
+	width: 10%;
+	text-align: center;
+}
+
 #menu {
     border-radius:5px;
 	border:1px solid #566963;
