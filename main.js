@@ -35,6 +35,9 @@ function init() {
     if(localStorage.getItem("game") == null) {
         save();
     }
+    if(localStorage.getItem("market") == null) {
+        save();
+    }
     load();
     var date1 = new Date(game.lastLoginDate);
     var date2 = new Date(Date.now());
@@ -56,11 +59,13 @@ function reset() {
 
 function save() {
     localStorage.setItem("game", JSON.stringify(game));
+    localStorage.setItem("market", JSON.stringify(market));
     console.log("Data saved");
 }
 
 function load() {
     game = JSON.parse(localStorage.getItem("game"));
+    market = JSON.parse(localStorage.getItem("market"));
     console.log("Data loaded");
 }
 
