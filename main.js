@@ -135,6 +135,11 @@ function prestige() {
     if(confirm("If you prestige now you will get " + Math.round(Math.round(game.money / 100)) + " prestige coins") == false) {
         return;
     }
+    document.getElementById("applesellamount").value = market.apples;
+    for(var i = 0; i < market.apples; i++) {
+        sellMarket("apple");
+    }
+    document.getElementById("applesellamount").value = 1;
     game.prestigeCoins += Math.round(Math.round(game.money / 100));
     game.money = 0;
     game.moneyPerClick = 1;
@@ -145,6 +150,8 @@ function prestige() {
     game.perSecAmountPerUpgrade = 1;
     game.perSecUpgradeAmountTillNextUpgrade = 0;
     game.perSecUpgradeCost = 25;
+    game.offlineTimeCost = 1000;
+    game.maxOfflineTime = 0.5;
 }
 
 function format(number) {
