@@ -91,6 +91,10 @@ function updateGui() {
 }
 
 function update() {
+    if(game.money == null || game.money == NaN) {
+        alert("Money glitched resetting to 1. Sorry for the inconvenience");
+        game.money = 1;
+    }
 }
 
 function toggleVisibility(element) {
