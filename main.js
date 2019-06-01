@@ -32,6 +32,9 @@ var everySec = setInterval(() => {
 }, 10);
 var marketInterval = setInterval(() => {
     market.appleprice += getRandomInt(-1,1);
+    if(market.appleprice <= 0) {
+        market.appleprice = 1;
+    }
 }, 2000);
 
 function init() {
