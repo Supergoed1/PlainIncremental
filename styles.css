@@ -26,6 +26,15 @@
 	font-size:18px;
 	font-weight:bold;
 }
+.clicksPs {
+    position: fixed;
+    top: 47%;
+    right: 50%;
+    color: rgb(90, 86, 66);
+    font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+}
 
 .upgradesButton {
     border-radius:5px;

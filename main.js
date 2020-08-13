@@ -80,7 +80,7 @@ function load() {
 
 function updateGui() {
     document.getElementById("money").innerHTML = format(game.money);
-    document.getElementById("presCoins").innerHTML = "Prestige Coins: " + game.prestigeCoins;
+    //document.getElementById("presCoins").innerHTML = "Prestige Coins: " + game.prestigeCoins;
     document.getElementById("presBonus").innerHTML = "Prestige Bonus: " + game.prestigeCoins * game.bonusPerPresCoin + "%";
     document.getElementById("clickButton").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerClick));
     document.getElementById("clickUpgrade").innerHTML = "+" + format(game.clickAmountPerUpgrade) + "/click <br> Cost: " + format(game.clickUpgradeCost);
@@ -88,6 +88,7 @@ function updateGui() {
     document.getElementById("offlineTimeUpgrade").innerHTML = "+0.5 hours offline time <br> Cost: " + format(game.offlineTimeCost);
     document.getElementById("aprice").innerHTML = "Apple Price: " + format(market.appleprice);
     document.getElementById("aamount").innerHTML = "Apples: " + market.apples;
+    document.getElementById("moneyPsDisplay").innerHTML = "+" + format(getPrestigeBonus(game.moneyPerSec)) + "/s";
 }
 
 function update() {
