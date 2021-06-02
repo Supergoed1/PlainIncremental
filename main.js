@@ -143,7 +143,9 @@ function onClick() {
 }
 
 function prestige() {
-    if(confirm("If you prestige now you will get " + Math.round(Math.round(game.money / 100)) + " prestige coins") == false) {
+    var bonus = Math.round(game.money / 100);
+    var newBonus = game.prestigeCoins + bonus;
+    if(confirm("If you prestige now you will have a prestige bonus of " + newBonus + "% (+" + bonus + "%)") == false) {
         return;
     }
     document.getElementById("applesellamount").value = market.apples;
